@@ -57,22 +57,40 @@ function App() {
     })
   }
 
+  const group = items.reduce<Array<Array<typeof items[0]>>>((acc, item) => {
+    const key = item.no
+    if (acc[key]) {
+      acc[key].push(item)
+    } else {
+      acc[key] = [item]
+    }
+    return acc
+  }, [])
+
   return (
     <div className='p-4'>
-      <h1>马桶 UI 值生成</h1>
-      <div className='flex flex-wrap'>
+      <div>
         {
-          items.map(item => (<div
-            className='flex m-4 bg-slate-50 shadow-sm'
-            key={item.label}>
-            <Checkbox id={item.label} checked={item.checked} onCheckedChange={() => updateValue(item)} />
-            <label
-              htmlFor={item.label}
-              className="ml-4 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-            >
-              {item.label}
-            </label>
-          </div>))
+          group.map((items, index) => (
+            <>
+              <h2 className='font-bold my-2'>Byte {index}</h2>
+              <div className='flex flex-wrap border'>
+                {
+                  items.map(item => (<div
+                    className='flex m-4'
+                    key={item.label}>
+                    <Checkbox id={item.label} checked={item.checked} onCheckedChange={() => updateValue(item)} />
+                    <label
+                      htmlFor={item.label}
+                      className="ml-4 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                    >
+                      {item.label}({item.no},{item.bit})
+                    </label>
+                  </div>))
+                }
+              </div>
+            </>
+          ))
         }
       </div>
       <Button className='m-2' onClick={checkAll}>全选</Button>
