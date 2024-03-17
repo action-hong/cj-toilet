@@ -108,5 +108,45 @@ export const data = [
     label: '氛围灯',
     no: 4,
     bit: 0
-  }
+  },
+  {
+    label: '翻盖力度控制',
+    no: 5,
+    bit: 0
+  },
+  {
+    label: '翻圈力度控制',
+    no: 5,
+    bit: 1
+  },
+  {
+    label: '语音音量',
+    no: 5,
+    bit: 2
+  },
+  {
+    label: '冲水挡位',
+    no: 5,
+    bit: 3
+  },
+  {
+    label: '自动夜灯',
+    no: 5,
+    bit: 4
+  },
+  {
+    label: '自动关盖时间',
+    no: 5,
+    bit: 5
+  },
+  {
+    label: '自动泡沫盾',
+    no: 5,
+    bit: 6
+  },
+  {
+    label: '老化和虚拟着座',
+    no: 5,
+    bit: 7
+  },
 ]
