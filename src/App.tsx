@@ -80,8 +80,8 @@ function App() {
       <p>Result: </p>
       <p>整数：{parseInt(binary, 2)}</p>
       <p>HEX: {parseInt(binary, 2).toString(16)}</p>
-      <p>
-        BINARY: 
+      <p>BINARY:</p>
+      <p className='break-words'>
         {binaryArr.map((item, index) => (<span style={{ color: item.color }} key={index}>{item.value}</span>))}
       </p>
     </div>
