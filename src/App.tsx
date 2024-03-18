@@ -3,6 +3,8 @@ import { data } from './toilet'
 import { useState } from 'react'
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
+import { createCommand } from './lib/utils'
+import CopyButton from './components/CopyButton'
 
 function App() {
 
@@ -57,6 +59,8 @@ function App() {
     })
   }
 
+  binaryArr.reverse()
+
   const group = items.reduce<Array<Array<typeof items[0]>>>((acc, item) => {
     const key = item.no
     if (acc[key]) {
@@ -67,12 +71,19 @@ function App() {
     return acc
   }, [])
 
+  const ui = createCommand(
+    0x01,
+    0x72,
+    parseInt(binary, 2),
+    6
+  )
+
   return (
     <div className='p-4'>
       <div>
         {
           group.map((items, index) => (
-            <>
+            <div key={index}>
               <h2 className='font-bold my-2'>Byte {index}</h2>
               <div className='flex flex-wrap border'>
                 {
@@ -89,16 +100,15 @@ function App() {
                   </div>))
                 }
               </div>
-            </>
+            </div>
           ))
         }
       </div>
       <Button className='m-2' onClick={checkAll}>全选</Button>
       <Button onClick={checkToggle}>反选</Button>
-      <p>Result: </p>
-      <p>整数：{parseInt(binary, 2)}</p>
-      <p>HEX: {parseInt(binary, 2).toString(16)}</p>
-      <p>BINARY:</p>
+      <p>UI Result: </p>
+      <CopyButton text={ui.hex} />
+      <CopyButton text={ui.byte} />
       <p className='break-words'>
         {binaryArr.map((item, index) => (<span style={{ color: item.color }} key={index}>{item.value}</span>))}
       </p>
