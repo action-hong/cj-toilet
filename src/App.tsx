@@ -4,7 +4,16 @@ import { useState } from 'react'
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
 import { createCommand } from './lib/utils'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import CopyButton from './components/CopyButton'
+import LampConfig from './components/LampConfig'
+import ModelConfig from './components/ModelConfig'
+import { Toaster } from "@/components/ui/toaster"
 
 function App() {
 
@@ -80,40 +89,51 @@ function App() {
 
   return (
     <div className='p-4'>
-      <div>
-        {
-          group.map((items, index) => (
-            <div key={index}>
-              <h2 className='font-bold my-2'>Byte {index}</h2>
-              <div className='flex flex-wrap border'>
-                {
-                  items.map(item => (<div
-                    className='flex m-4'
-                    key={item.label}>
-                    <Checkbox id={item.label} checked={item.checked} onCheckedChange={() => updateValue(item)} />
-                    <label
-                      htmlFor={item.label}
-                      className="ml-4 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-                    >
-                      {item.label}({item.no},{item.bit})
-                    </label>
-                  </div>))
-                }
-              </div>
-            </div>
-          ))
-        }
-      </div>
-      <Button className='m-2' onClick={checkAll}>全选</Button>
-      <Button onClick={checkToggle}>反选</Button>
-      <p>UI Result: </p>
-      <CopyButton text={ui.hex} />
-      <CopyButton text={ui.byte} />
-      <p className='break-words'>
-        {binaryArr.map((item, index) => (<span style={{ color: item.color }} key={index}>{item.value}</span>))}
-      </p>
+      <ModelConfig />
+      <Card>
+        <CardHeader>
+          <CardTitle>插件功能配置</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div>
+            {
+              group.map((items, index) => (
+                <div key={index}>
+                  <h2 className='font-bold my-2'>Byte {index}</h2>
+                  <div className='flex flex-wrap border'>
+                    {
+                      items.map(item => (<div
+                        className='flex m-4'
+                        key={item.label}>
+                        <Checkbox id={item.label} checked={item.checked} onCheckedChange={() => updateValue(item)} />
+                        <label
+                          htmlFor={item.label}
+                          className="ml-4 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                        >
+                          {item.label}({item.no},{item.bit})
+                        </label>
+                      </div>))
+                    }
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+          <Button className='m-2' onClick={checkAll}>全选</Button>
+          <Button onClick={checkToggle}>反选</Button>
+          <p>UI Result: </p>
+          <CopyButton text={ui.hex} />
+          <CopyButton text={ui.byte} />
+          <p className='break-words'>
+            {binaryArr.map((item, index) => (<span style={{ color: item.color }} key={index}>{item.value}</span>))}
+          </p>
+        </CardContent>
+      </Card>
+      <LampConfig />
+      <Toaster />
     </div>
   )
+
 }
 
 export default App
