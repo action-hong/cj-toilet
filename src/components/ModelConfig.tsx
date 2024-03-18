@@ -52,7 +52,7 @@ export default function ModelConfig() {
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5 my-2">
           <Label htmlFor="pid" className='my-2'>PID</Label>
-          <Input id="pid" placeholder="pid" value={pid} onChange={handleChangePID}/>
+          <Input id="pid" type='number' placeholder="pid" value={pid} onChange={handleChangePID}/>
         </div>
         <p className='mt-2'>Result:</p>
         <CopyButton text={config.hex} />
