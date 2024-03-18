@@ -35,7 +35,7 @@ export function createCommand(
   arr.push(0x1b)
 
   return {
-    hex: arr.map((i) => i.toString(16).padStart(2, '0')).join(' '),
-    byte: arr.map((i) => `0x${i.toString(16).padStart(2, '0')}`).join(', '),
+    hex: arr.map((i) => i.toString(16).toUpperCase().padStart(2, '0')).join(' '),
+    byte: arr.map((i) => `0x${i.toString(16).toUpperCase().padStart(2, '0')}`).join(', '),
   }
 }
