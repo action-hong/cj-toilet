@@ -50,7 +50,7 @@ export const data = [
     bit: 7
   },
   {
-    label: '温度调节',
+    label: '温度调节(打开坐温风温水温，关闭坐温)',
     no: 2,
     bit: 0
   },
