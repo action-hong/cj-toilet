@@ -110,6 +110,11 @@ export const data = [
     bit: 0
   },
   {
+    label: '自动冲水开/关',
+    no: 4,
+    bit: 1
+  },
+  {
     label: '翻盖力度控制',
     no: 5,
     bit: 0

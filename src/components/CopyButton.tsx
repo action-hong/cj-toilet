@@ -25,8 +25,8 @@ export default function CopyButton ({
   }
   return (
     <div className='flex items-center'>
-      <span>{ text }</span>
       <Button className='m-2' onClick={copy}>点击复制</Button>
+      <span>{ text }</span>
       <span></span>
     </div>
   )
