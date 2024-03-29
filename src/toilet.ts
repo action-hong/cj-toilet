@@ -115,6 +115,11 @@ export const data = [
     bit: 1
   },
   {
+    label: '雷达挡位',
+    no: 4,
+    bit: 2
+  },
+  {
     label: '翻盖力度控制',
     no: 5,
     bit: 0
