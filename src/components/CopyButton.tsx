@@ -3,8 +3,10 @@ import { useToast } from "@/components/ui/use-toast"
 
 export default function CopyButton ({
   text,
+  children,
 }: {
-  text: string
+  text: string,
+  children?: React.ReactNode
 }) {
   const { toast } = useToast()
 
@@ -26,8 +28,9 @@ export default function CopyButton ({
   return (
     <div className='flex items-center'>
       <Button className='m-2' onClick={copy}>点击复制</Button>
-      <span>{ text }</span>
-      <span></span>
+      {
+        children || <span>{text}</span>
+      }
     </div>
   )
 }

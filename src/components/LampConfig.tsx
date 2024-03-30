@@ -71,7 +71,11 @@ export default function LampConfig() {
           <Input id="type" type='number' placeholder="type" min={0} max={255} value={type} onChange={handleInputChange}/>
         </div>
         <p className='mt-2'>Result:</p>
-        <CopyButton text={config.hex} />
+        <CopyButton text={config.hex}>
+          {
+
+          }
+        </CopyButton>
         <CopyButton text={config.byte} />
       </CardContent>
     </Card>

@@ -54,8 +54,10 @@ export default function UIConfig() {
     return acc
   }, [0, 0])
 
+  
   const binaryArr: Array<{ color: string, value: string }> = []
   const binary = result.map((n, index) => n.toString(2).padStart(index === 0 ? 16 : 32, '0')).join('')
+  const funcNumber = parseInt(binary, 2)
 
   for (let i = 0; i < 48; i += 8) {
     binaryArr.push({
@@ -116,8 +118,15 @@ export default function UIConfig() {
           <Button className='m-2' onClick={checkAll}>全选</Button>
           <Button onClick={checkToggle}>反选</Button>
           <p>UI Result: </p>
-          <CopyButton text={ui.hex} />
-          <CopyButton text={ui.byte} />
+          <CopyButton text={ui.hex}>
+            { ui.raw.map((item, index) => (<span key={index} style={{ color: item.color }} className='whitespace-pre'>{item.hex} </span>)) }
+          </CopyButton>
+          <CopyButton text={ui.byte}>
+            { ui.raw.map((item, index) => (<span key={index} style={{ color: item.color }} className='whitespace-pre'>{item.byte} </span>)) }
+          </CopyButton>
+          <p>
+            Number: {funcNumber}
+          </p>
           <p className='break-words'>
             {binaryArr.map((item, index) => (<span style={{ color: item.color }} key={index}>{item.value}</span>))}
           </p>

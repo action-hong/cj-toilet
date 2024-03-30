@@ -5,6 +5,15 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+function pretterHex(num: number, index: number) {
+  const str = num.toString(16).toUpperCase().padStart(2, '0')
+  return {
+    hex: str,
+    byte: `0x${str}`,
+    color: index < 5 || index > 10 ? 'black' : `hsl(${(10 - index) * 360 / 6}, 50%, 50%)`
+  }
+}
+
 export function createCommand(
   from: number,
   command: number,
@@ -34,8 +43,11 @@ export function createCommand(
   arr.push(check & 0xff)
   arr.push(0x1b)
 
+  const commandArr = arr.map(pretterHex)
+
   return {
-    hex: arr.map((i) => i.toString(16).toUpperCase().padStart(2, '0')).join(' '),
-    byte: arr.map((i) => `0x${i.toString(16).toUpperCase().padStart(2, '0')}`).join(', '),
+    hex: commandArr.map(p => p.hex).join(' '),
+    byte: commandArr.map(p => p.byte).join(' '),
+    raw: commandArr,
   }
 }
